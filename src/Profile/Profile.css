@@ -1,0 +1,84 @@
+
+.profileBox {
+    display: flex;
+    height: 250px;
+    align-items: center;
+    justify-content: center;
+}
+.profileImageBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 230px;
+    background-color: white;
+    height: 230px;
+}
+.profileImage {
+    width: auto; height: auto;
+    max-width: 230px;
+    max-height: 230px;
+}
+
+
+.profileBrief {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+}
+
+table.type04 {
+    border-collapse: separate;
+    border-spacing: 1px;
+    text-align: center;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+    margin : 20px 10px 10px 10px;
+    
+}
+table.type04 th {
+    width: 100px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+table.type04 td {
+    width: 270px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+
+.checkDay {
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #ccc;
+}
+.checkDayText {
+    font-size: 20px;
+    text-align: center;
+    margin: 5px;
+}
+
+.react-datepicker__input-container{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 180px;
+    align-items: center;
+}
+
+.react-datepicker__input-container input{
+    width: 180px;
+    height: 30px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.borrowButton {
+    margin: 5px;
+}

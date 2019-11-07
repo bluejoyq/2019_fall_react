@@ -1,6 +1,7 @@
 import React from 'react';
 import Popup from './Popup';
 
+
 export default class PopupUse extends React.Component {
     constructor() {
         super();
@@ -16,11 +17,12 @@ export default class PopupUse extends React.Component {
     render() {
         return (
             <div className='popupuse'>
-                <button onClick={this.togglePopup}>show popup</button>
+                <button onClick={this.togglePopup}>버튼</button>
                 {this.state.showPopup ? 
                     <Popup
-                        text='닫아주세요.'
+                        text='물건 정보'
                         closePopup={this.togglePopup}
+                        content={this.props.content}
                     />
                 : null
                 }

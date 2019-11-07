@@ -3,7 +3,7 @@ h1 {
     padding: 0;
 }
 
-html, body, .app {
+html,body {
     margin: 0;
     padding: 0;
     position: relative;
@@ -20,44 +20,62 @@ html, body, .app {
     right: 0;
     bottom: 0;
     margin: auto;
-    background-color: rgba(0,0,0, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.blank {
+    flex-basis: 270px;
+    flex-shrink: 1;
+    height: 100%;
 }
 
 .popup {
-    width: 700px;
+    flex-basis: 500px;
+    flex-shrink: 0;
     height: 90%;
-    margin: auto;
     background: white;
-    border: 1;
-    border-radius: 30;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    padding-right: 5px;
+    margin-left: 10px;
 }
 
 .popupTop {
-    border-bottom: 0.1px solid #222222;
-    background: white;
-    position: absolute;
-    height: 10%;
-    width: 700px;
-    justify-content: center;
+    border-bottom: 0.1px solid #dad6d6;
+    background: rgb(255, 255, 255);
+    height: 7%;
+    display: flex;
+    align-items: center;
+    flex: 0.08;
+    border-radius: 10px;
 }
 
 .popupName {
     flex: 1;
     text-align: center;
-    font-size: 200%;
+    font-size: 4vh;
+    margin-left: 7%;
 }
 
 .closeButton {
-    position: absolute;
-    right: 2%;
-    top: 15%;
-    height: 50%;
-    font-size: 200%;
-    background-color: rgba(0,0,0, 0);
-    border: 0;
+    cursor: pointer;
 }
 
 .popupInner {
-    padding-top: 10%;
+    overflow: auto;
+    flex: 0.92;
+    background-color: #ffffff;
+    border-radius: 10px;
 }
 
+.tempData {
+    padding-bottom: 200px;
+    background-color: rgb(255, 255, 255);
+    margin-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
