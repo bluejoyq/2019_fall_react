@@ -4,6 +4,10 @@ import UserProfile from '../UserProfile/UserProfile';
 import Popup from '../Popup/Popup';
 import Profile from '../Profile/Profile';
 
+function isMobile() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
 export default class Item extends React.Component {
     constructor(props){
         super(props)
@@ -46,7 +50,7 @@ export default class Item extends React.Component {
                     
                 : null
                 }
-                <div className='item' onClick={this.props.openPopup(this.props.item._id)}>
+                    <div className='item' onClick={this.props.openPopup(this.props.item._id)}>
                     <div className='info'>
                         <span className='userInfo'>
                             <div className='userInfo' onClick={this.toggleProfile}>
@@ -75,8 +79,8 @@ export default class Item extends React.Component {
                         src={'https://khuthon.s3.ap-northeast-2.amazonaws.com/'+this.props.item.productImage}
                         />  
                     </div>
-                </div>
-            </div>
+                </div>               
+           </div>
         )
     }
 

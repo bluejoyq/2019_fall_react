@@ -115,4 +115,27 @@ server.productReadAll = ( setData ) => {
     })
 }
 
+server.addProduct = ( productId, username, startDate, endDate ) => {   
+    let option = {productId:productId,customer:username,rentDates:[startDate,endDate]}
+    fetch("https://evening-peak-07863.herokuapp.com/api/rents/", 
+        { 
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(option),
+        })
+    .then( async(jsonData) => {
+        let datas = await jsonData.json();
+        if(datas.status >= 400){throw(1)}
+        alert("예약 성공!");
+        return 1;
+    })
+    .catch( (error) => {
+        alert("예약 실패!");
+        return null;
+    });
+}
+
 module.exports = server;
