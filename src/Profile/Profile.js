@@ -5,12 +5,13 @@ import 'react-datepicker/dist/react-datepicker.css';
 import server from '../dataSend/userProfileLoad';
 import {Button} from '@material-ui/core/';
 import Comment from '../Comment/Comment';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 export default class Profile extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            item: {author:{},availableDates:[0], comments:[]},
+            item: {author:{},availableDates:[0], comments:[],likes:[]},
             date: null,
             startDate: null,
             endDate: null,
@@ -28,7 +29,10 @@ export default class Profile extends React.Component {
     componentDidMount () {
         this.reload();
     }
-    
+
+    sendLike = () => {
+        server.sendLike(this.props.username,this.state.item._id, this.reload);
+    }
 
     setStartDate= (date) => {
         this.setState({startDate:date})
@@ -57,14 +61,27 @@ export default class Profile extends React.Component {
     render(){
         return(
             <div>
-                {this.state.item != null ? <div><div className='profileBox'>
+                {this.state.item != null ? <div>
+                <div className='profileBox'>
                     <div className = 'profileImageBox'>
                         <img className = 'profileImage' 
                         src = {'https://khuthon.s3.ap-northeast-2.amazonaws.com/' + this.state.item.productImage}
                         onError={(event)=>{event.target.src = 'https://i.imgur.com/HTtPYah.jpg'}}
                         />
                     </div>
+                    
                 </div>
+                <div className='profileLike'>
+                    { !this.state.item.likes.find((data)=> (data.username == this.props.username)) && this.props.isLogin ? 
+                    <Button variant="outlined" color="secondary" fullWidth onClick={this.sendLike} >
+                        <div className='like'><FavoriteIcon />{this.state.item.numOfLikes}</div>
+                    </Button> :
+                    <Button disabled variant="outlined" color="secondary" fullWidth >
+                    <div className='like'><FavoriteIcon />{this.state.item.numOfLikes}</div>
+                    </Button>
+                    }
+                    
+                </div>  
                 <div className = 'profileBrief'>                          
                         <table className="type04">
                             <tbody>

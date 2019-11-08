@@ -79,7 +79,8 @@ class AddItem extends React.Component {
     handleSubmit = (event) => {
         this.props.closePopup();
         server.addProduct(this.state.price,this.props.username,this.state.title,this.state.content,this.state.do,this.state.gu,
-            this.state.startDate.toISOString().substring(0, 10),this.state.endDate.toISOString().substring(0, 10), this.state.pictures[0])
+            this.state.startDate.toISOString().substring(0, 10),
+            this.state.endDate.toISOString().substring(0, 10), this.state.pictures[0])
         event.preventDefault();
     }
     setStartDate= (date) => {

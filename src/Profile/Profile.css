@@ -19,7 +19,18 @@
     max-height: 230px;
 }
 
-
+.profileLike{
+    display: flex;
+    margin: 0 auto;
+    width: 230px;
+}
+.like{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 40px;
+    font-size: 20px;
+}
 .profileBrief {
     display: flex;
     flex-direction: column;

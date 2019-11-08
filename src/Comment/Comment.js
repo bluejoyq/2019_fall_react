@@ -37,7 +37,7 @@ export default class Comment extends Component {
         this.setState({commentText : comment});
     }
     deleteComment = () => {
-
+        
     }
     
 
