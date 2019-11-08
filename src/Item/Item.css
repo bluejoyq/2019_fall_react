@@ -18,7 +18,10 @@
 }
 .desktopItem{
     width:50vw;
-    
+    min-width:430px;
+    min-height: 140px;
+    max-height: 200px;
+    max-width: 600px;
     display: flex;
     height: 15vw;
     /* max-width: 900px;

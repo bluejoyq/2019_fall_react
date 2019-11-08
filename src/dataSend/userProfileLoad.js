@@ -125,9 +125,11 @@ server.addProduct = ( title, content, location, subLocation, startDate, endDate,
     fetch("https://evening-peak-07863.herokuapp.com/api/products/", 
         { 
             method: 'POST',
+            // mode:"cors",
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'multipart/form-data',
+                // 'Content-Type': 'multipart/form-data',
+                // 'Content-Type': 'application/json',
             },
             body: form,
         })
