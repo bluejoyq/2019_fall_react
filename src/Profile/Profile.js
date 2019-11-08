@@ -153,7 +153,6 @@ export default class Profile extends React.Component {
                         
                     </div></div>: null}
                     <Comment item={this.state.item} username={this.props.username}/>
-                    
             </div>
         )
     }

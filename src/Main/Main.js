@@ -16,6 +16,7 @@ const styles = theme => ({
 
 });
 
+
 class Main extends React.Component {
     constructor(props){
         super(props)
@@ -122,7 +123,8 @@ class Main extends React.Component {
             <div>
                 <div className = 'mainTop'>
                     <div className = 'mainLogo'>
-                        <div className = 'mainLogoText'>LOGO</div>
+                        {/* <div className = 'mainLogoText'>LOGO</div> */}
+                        <img src="/logo.png" style={{'width':'100%'}}></img>
                     </div>
                     <div className = 'mainBlank'>
                         <div></div>

@@ -1,13 +1,14 @@
 import React from 'react';
 import './UserProfile.css';
 import server from '../dataSend/userProfileLoad';
-
+import Item from '../Item/Item';
 
 export default class UserProfile extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            account :{}
+            account :{},
+            items:[]
         }
         
     }
@@ -16,9 +17,14 @@ export default class UserProfile extends React.Component {
             account:account,
         });
     }
-    
+    setItems=(datas)=>{
+        this.setState({
+            items: datas
+        });
+    }
     componentDidMount () {
         server.userRead(this.props.username,this.setAccount);
+        server.productReadAll(this.setItems);
     }
     
     render() {
@@ -51,7 +57,18 @@ export default class UserProfile extends React.Component {
                         </tbody>
                     </table>
                         
-                 </div>
+                </div>
+                <div className='myItem'>
+                {
+                this.state.items.map( ( data ) => (
+                    data.author.username === this.props.username
+                    ? 
+                    <Item item={data} key={data._id}
+                        isLogin={this.props.isLogin} username={this.props.username}
+                        openPopup={()=>{}}/> : null
+                ))
+                }
+            </div>
             </div>
         )
     }
