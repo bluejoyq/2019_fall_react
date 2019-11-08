@@ -118,6 +118,7 @@ server.productReadAll = ( setData ) => {
 server.addProduct = ( productId, username, startDate, endDate ) => {   
     let option = {productId:productId,customer:username,rentDates:[startDate,endDate]}
     fetch("https://evening-peak-07863.herokuapp.com/api/rents/", 
+    // fetch("http://127.0.0.1:3000/api/rents/", 
         { 
             method: 'POST',
             headers: {
