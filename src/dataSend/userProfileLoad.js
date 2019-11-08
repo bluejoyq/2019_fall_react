@@ -75,25 +75,39 @@ server.productRead = ( productId,setData ) => {
     })
 }
 
-
+//username 없어도 됨.
 server.rent = ( productId, username, startDate, endDate ) => {   
-    let option = {productId:productId,customer:username,rentDates:[startDate,endDate]}
+    console.log(productId, startDate, endDate)
+
+    let form = new FormData();
+    form.append('productId',productId);
+    form.append('rentDates',[startDate,endDate]);
+    console.log(form)
+    /* let option = {title:title,content:content,location:location,
+        subLocation:subLocation,availableDates:[startDate,endDate], productImage:picture} */
     fetch("https://evening-peak-07863.herokuapp.com/api/rents/", 
         { 
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
+                //이거 없으면 안됨.
             },
-            body: JSON.stringify(option),
+            // body: form,
+            body:JSON.stringify({
+                "productId":productId,
+                "rentDates":[startDate, endDate]
+            })
         })
     .then( async(jsonData) => {
+        console.log(jsonData)
         let datas = await jsonData.json();
         if(datas.status >= 400){throw(1)}
         alert("예약 성공!");
         return 1;
     })
     .catch( (error) => {
+        console.error(error)
         alert("예약 실패!");
         return null;
     });
@@ -120,6 +134,7 @@ server.addProduct = ( price,username,title, content, location, subLocation, star
     form.append('username',username); form.append('price',price);
     form.append('title',title);form.append('content',content);form.append('location',location);
     form.append('subLocation',subLocation);form.append('availableDates',[startDate,endDate]);form.append('productImage',picture);
+    console.log(form)
 
     fetch("https://evening-peak-07863.herokuapp.com/api/products/", 
         { 
