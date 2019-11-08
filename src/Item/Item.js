@@ -4,10 +4,6 @@ import UserProfile from '../UserProfile/UserProfile';
 import Popup from '../Popup/Popup';
 import Profile from '../Profile/Profile';
 
-function isMobile() {
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-}
-
 export default class Item extends React.Component {
     constructor(props){
         super(props)

@@ -115,16 +115,21 @@ server.productReadAll = ( setData ) => {
     })
 }
 
-server.addProduct = ( productId, username, startDate, endDate ) => {   
-    let option = {productId:productId,customer:username,rentDates:[startDate,endDate]}
-    fetch("https://evening-peak-07863.herokuapp.com/api/rents/", 
+server.addProduct = ( title, content, location, subLocation, startDate, endDate, picture ) => {   
+    let form = new FormData();
+    form.append('title',title);form.append('content',content);form.append('location',location);
+    form.append('subLocation',subLocation);form.append('availableDates',[startDate,endDate]);form.append('productImage',picture);
+
+    /* let option = {title:title,content:content,location:location,
+        subLocation:subLocation,availableDates:[startDate,endDate], productImage:picture} */
+    fetch("https://evening-peak-07863.herokuapp.com/api/products/", 
         { 
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json',
+                'Content-Type': 'multipart/form-data',
             },
-            body: JSON.stringify(option),
+            body: form,
         })
     .then( async(jsonData) => {
         let datas = await jsonData.json();

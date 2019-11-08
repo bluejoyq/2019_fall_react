@@ -4,6 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import './AddItem.css';
 import ImageUpload from '../ImageUpload/ImageUpload';
 import DateRange from '../DateRange/DateRange';
+import server from '../dataSend/userProfileLoad';
 
 const place = [
     ["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"],
@@ -77,8 +78,8 @@ class AddItem extends React.Component {
 
     handleSubmit = (event) => {
         this.props.closePopup();
-        console.log(this.state.do,this.state.gu,this.state.title,this.state.content,this.state.price, this.state.pictures,
-            this.state.startDate.toISOString().substring(0, 10),this.state.endDate.toISOString().substring(0, 10))
+        server.addProduct(this.state.title,this.state.content,this.state.do,this.state.gu,
+            this.state.startDate.toISOString().substring(0, 10),this.state.endDate.toISOString().substring(0, 10), this.state.pictures[0])
         event.preventDefault();
     }
     setStartDate= (date) => {
@@ -137,7 +138,7 @@ class AddItem extends React.Component {
                     required
                     >
                         {placeDo.map((elem, i) => 
-                            <MenuItem value = {elem}>{elem}</MenuItem>
+                            <MenuItem key={i} value = {elem}>{elem}</MenuItem>
                         )}
                     </Select>
                 </FormControl>
@@ -151,7 +152,7 @@ class AddItem extends React.Component {
                     required
                     >
                         {place[this.state.selectIndx].map((elem, i) => 
-                            <MenuItem value = {elem}>{elem}</MenuItem>
+                            <MenuItem key={i} value = {elem}>{elem}</MenuItem>
                         )}
                     </Select>
                 </FormControl>
