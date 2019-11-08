@@ -57,7 +57,7 @@ export default class Item extends React.Component {
                                 <span className='itemUser'>{this.props.item.author.nickname}</span>
                             </div>
                             <div className='itemLocation'>
-                                {this.props.item.location + ' ' + this.props.item.subLocation}
+                                {this.props.item.location}<br/>{this.props.item.subLocation}
                             </div>
                             
                         </span>

@@ -1,12 +1,6 @@
 .container {
    
 }
-.ImageBox {
-
-}
-.avatar {
-
-}
 .TextBox {
     
 }
@@ -16,12 +10,19 @@
 .commentList {
 
 }
+.List{
+    flex-basis: 420px;
+    flex-shrink: 1;
+    margin: 0 auto;
+    padding: 10px;
+}
 .inputBox {
-    margin-left: 16px;
-    margin-right: 16px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 .inputText {
-    width: 500px;
+    
+    width: 100%;
 }
 .inputButton {
     float: right;
@@ -29,8 +30,8 @@
     border : none;
 }
 .commentText {
-    margin-left: 16px;
-    margin-right: 16px;   
+    margin-left: 10px;
+    margin-right: 10px;   
     border-bottom: 1px;
-    width: 500px;
+    width: 100%;
 }

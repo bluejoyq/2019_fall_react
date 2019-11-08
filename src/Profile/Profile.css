@@ -55,12 +55,15 @@ table.type04 td {
 }
 
 .checkDay {
+    min-width: 250px;
+    width: 30vw;
     align-items: center;
     padding: 15px;
     border: 1px solid #ccc;
 }
 .checkDayText {
-    font-size: 20px;
+    font-size: 15px;
+    font-weight: bold;
     text-align: center;
     margin: 5px;
 }
@@ -73,9 +76,9 @@ table.type04 td {
 }
 
 .react-datepicker__input-container input{
-    width: 180px;
+    width: 130px;
     height: 30px;
-    font-size: 20px;
+    font-size: 15px;
     text-align: center;
 }
 
@@ -88,14 +91,15 @@ table.type04 td {
     justify-content: space-around;
 }
 
-.start{
+.startProfile{
     display: flex;
     flex-direction: column;
+    width: 80%;
     
 }
 
-.end{
+.endProfile{
     margin-top: 10px;
-    font-size: 20px;
+    font-size: 15px;
     text-align: center;
 }

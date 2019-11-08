@@ -20,9 +20,13 @@ export default class Profile extends React.Component {
         this.setState({
             item: item,
         })
+        console.log("setItem in Profile.js")
+        //comment가 여기를 찾음.
     }
 
     reload = () => {
+        //여기가 setItem 뿐만 아니라 Comment도 로딩해야함
+        console.log("profile reload")
         server.productRead(this.props._id,this.setItem);
     }
     componentDidMount () {
@@ -95,8 +99,8 @@ export default class Profile extends React.Component {
                                 대여 가능 날짜 확인
                             </div>
                             <div className= 'pick'>
-                            <div className='start'>
-                            <div className='end'>대여 시작 일자</div>
+                            <div className='startProfile'>
+                            <div className='endProfile'>대여 시작 일자</div>
                             <DatePicker
                                 selected={this.state.startDate}
                                 onChange={date => this.setStartDate(date)}
@@ -110,8 +114,8 @@ export default class Profile extends React.Component {
                                 disabledKeyboardNavigation
                             />
                             </div>
-                            <div className='start'>
-                            <div className='end'>대여 종료 일자</div>
+                            <div className='startProfile'>
+                            <div className='endProfile'>대여 종료 일자</div>
                             <DatePicker
                                 selected={this.state.endDate}
                                 onChange={date => this.setEndDate(date)}

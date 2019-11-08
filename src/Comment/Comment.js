@@ -45,7 +45,7 @@ export default class Comment extends Component {
         //server.productRead(this.props.item._id, this.changeItem);
         return (
             <>
-                <div>
+                <div class = "List">
                         <CommentTop username={this.props.username} userImage={'https://i.imgur.com/HTtPYah.jpg'} />
                         <div className="inputBox">
                             <TextField

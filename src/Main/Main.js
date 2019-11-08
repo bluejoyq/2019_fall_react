@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
 import './Main.css';
 import { FaSearch } from "react-icons/fa";
@@ -121,7 +122,7 @@ class Main extends React.Component {
             <div>
                 <div className = 'mainTop'>
                     <div className = 'mainLogo'>
-                        <div className = 'mainLogoText'>LOGO</div>
+                        <img className = 'mainLogoText' src="/logo.png"/>
                     </div>
                     <div className = 'mainBlank'>
                         <div></div>
