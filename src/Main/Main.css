@@ -69,7 +69,7 @@
     padding-bottom: 100px;
     height: 100%;
     width: 100%;
-    background-color: lightblue;
+    background-color: whitesmoke;
 }
 .mainContentSmall {
     display: flex;
@@ -110,12 +110,12 @@
     cursor:pointer;
 }
 .mainNavTextHigh{
-    color: #af491a;
+    color: #ff0000;
     font-size: 20px;
     flex: 1;
     text-align: center;
     font-weight: bold;
-    border-bottom: 3px solid #af491a;
+    border-bottom: 3px solid #ff0000;
     cursor:pointer;
 }
 .mainList{

@@ -3,8 +3,18 @@ import './Item.css';
 import UserProfile from '../UserProfile/UserProfile';
 import Popup from '../Popup/Popup';
 import Profile from '../Profile/Profile';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import { withStyles } from "@material-ui/core/styles";
 
-export default class Item extends React.Component {
+const styles = theme => ({
+    button: {
+        padding:0
+        
+      },
+});
+  
+
+class Item extends React.Component {
     constructor(props){
         super(props)
         this.state = {
@@ -27,6 +37,7 @@ export default class Item extends React.Component {
     
 
     render() {
+        const { classes } = this.props;
         return(
             <div>
                 {this.state.showProfile ? 
@@ -65,9 +76,15 @@ export default class Item extends React.Component {
                             <div className='itemTitle'>
                                 {this.props.item.title}
                             </div>
-                            <div className='itemPrice'>
-                                \{this.props.item.price}
+                            <div className='itemBottom'>
+                                <div className='itemLike'>
+                                <FavoriteIcon />{this.props.item.numOfLikes}
+                                </div>
+                                <div className='itemPrice'>
+                                    \{this.props.item.price}
+                                </div>
                             </div>
+                            
                         </div>
                     </div>
                     {/* 모바일인 경우 */}
@@ -83,3 +100,5 @@ export default class Item extends React.Component {
     }
 
 }
+
+export default withStyles(styles, { withTheme: true })(Item);

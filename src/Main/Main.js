@@ -17,6 +17,7 @@ const styles = theme => ({
 
 });
 
+
 class Main extends React.Component {
     constructor(props){
         super(props)
@@ -28,16 +29,17 @@ class Main extends React.Component {
             showAddItem: false,
             showSearch: false,
             username: null,
-            search:{do:'',gu:'',keyword:''},
+            search:{do:'',gu:'',keyword:'',temp:''},
             textHighlight:["mainNavTextHigh","mainNavText","mainNavText"],
             contentMargin:"mainContent",
-            func:[()=>{},this.toggleSearch]
+            func:[()=>{},this.toggleSearch],
         }  
         
     }
     componentDidMount(){
         this.getInitialState();
     }
+
     getInitialState = () => {
         let name = sessionStorage.getItem('username');
         if(name != null){
@@ -122,7 +124,8 @@ class Main extends React.Component {
             <div>
                 <div className = 'mainTop'>
                     <div className = 'mainLogo'>
-                        <img className = 'mainLogoText' src="/logo.png"/>
+                        {/* <div className = 'mainLogoText'>LOGO</div> */}
+                        <img src="/logo.png" style={{'width':'100%'}}></img>
                     </div>
                     <div className = 'mainBlank'>
                         <div></div>
@@ -197,7 +200,7 @@ class Main extends React.Component {
                 <Popup
                     text='물품 추가하기'
                     closePopup={this.toggleAddItem}
-                    content={<AddItem closePopup={this.toggleAddItem} username={this.username}/>}
+                    content={<AddItem closePopup={this.toggleAddItem} username={this.username} reload={this.reload}/>}
                 />
                 : null
                 }

@@ -60,3 +60,7 @@ table.type04 td {
     align-items: center;
     padding-bottom: 10px;
 }
+
+.myItem {
+    background-color: rgb(255, 236, 197);
+}
