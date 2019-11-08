@@ -50,7 +50,7 @@ export default class Item extends React.Component {
                     
                 : null
                 }
-                    <div className='item' onClick={this.props.openPopup(this.props.item._id)}>
+                    <div className={Math.max(document.documentElement.clientWidth, window.innerWidth || 0)<800 ? "mobileItem":"desktopItem"} onClick={this.props.openPopup(this.props.item._id)}>
                     <div className='info'>
                         <span className='userInfo'>
                             <div className='userInfo' onClick={this.toggleProfile}>
@@ -74,7 +74,8 @@ export default class Item extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div className='itemPic'>
+                    {/* 모바일인 경우 */}
+                    <div className='itemPic'style={Math.max(document.documentElement.clientWidth, window.innerWidth || 0)<800 ? {width:"30vw"}:{}}>
                         <img className='pic'
                         src={'https://khuthon.s3.ap-northeast-2.amazonaws.com/'+this.props.item.productImage}
                         />  
