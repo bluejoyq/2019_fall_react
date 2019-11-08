@@ -21,13 +21,10 @@ export default class Profile extends React.Component {
         this.setState({
             item: item,
         })
-        console.log("setItem in Profile.js")
-        //comment가 여기를 찾음.
     }
 
     reload = () => {
-        //여기가 setItem 뿐만 아니라 Comment도 로딩해야함
-        console.log("profile reload")
+
         server.productRead(this.props._id,this.setItem);
     }
     componentDidMount () {
@@ -76,15 +73,23 @@ export default class Profile extends React.Component {
                     
                 </div>
                 <div className='profileLike'>
-                    { !this.state.item.likes.find((data)=> (data.username == this.props.username)) && this.props.isLogin ? 
-                    <Button variant="outlined" color="secondary" fullWidth onClick={this.sendLike} >
+                    { !this.props.isLogin ? 
+                        <Button variant="outlined" color="secondary" fullWidth >
                         <div className='like'><FavoriteIcon />{this.state.item.numOfLikes}</div>
-                    </Button> :
-                    <Button disabled variant="outlined" color="secondary" fullWidth >
-                    <div className='like'><FavoriteIcon />{this.state.item.numOfLikes}</div>
-                    </Button>
+                    </Button> : null
                     }
-                    
+                    {this.state.item.likes.find((data)=> (data.username == this.props.username)) && this.props.isLogin ?
+                        <Button variant="outlined" color="primary" fullWidth onClick={this.sendLike} >
+                        <div className='like'><FavoriteIcon />{this.state.item.numOfLikes}</div>
+                    </Button> 
+                    :
+                    null
+                    }
+                    {!(this.state.item.likes.find((data)=> (data.username == this.props.username))) && this.props.isLogin ?
+                        <Button variant="outlined" color="secondary" fullWidth onClick={this.sendLike} >
+                    <div className='like'><FavoriteIcon />{this.state.item.numOfLikes}</div>
+                    </Button>:null
+                    }
                 </div>  
                 <div className = 'profileBrief'>                          
                         <table className="type04">

@@ -200,7 +200,7 @@ class Main extends React.Component {
                 <Popup
                     text='물품 추가하기'
                     closePopup={this.toggleAddItem}
-                    content={<AddItem closePopup={this.toggleAddItem} username={this.username} reload={this.reload}/>}
+                    content={<AddItem closePopup={this.toggleAddItem} username={this.state.username} reload={this.reload}/>}
                 />
                 : null
                 }

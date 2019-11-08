@@ -70,6 +70,7 @@
     height: 100%;
     width: 100%;
     background-color: whitesmoke;
+    min-height: 500px;
 }
 .mainContentSmall {
     display: flex;
@@ -79,6 +80,7 @@
     height: 100%;
     width: 100%;
     background-color: whitesmoke;
+    min-height: 500px;
 }
 
 .mainNav{

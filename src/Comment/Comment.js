@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
 import "./Comment.css"
 import server from '../dataSend/userProfileLoad';
-
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
-import TextField from '@material-ui/core/TextField';
+import {Divider,Button,TextField,Avatar,ListItemText,ListItemAvatar,ListItem} from '@material-ui/core'
 
 export default class Comment extends Component {
     constructor(props){
@@ -19,6 +14,12 @@ export default class Comment extends Component {
         
     }
 
+    componentDidMount(){
+        server.productRead(this.props._id,this.changeItem);
+    }
+    componentDidUpdate(){
+        server.productRead(this.props._id,this.changeItem);
+    }
     changeText = (elem) => {
         let text = elem.target.value;
         if(text.length < 200){
@@ -39,40 +40,42 @@ export default class Comment extends Component {
     deleteComment = () => {
         
     }
-    
 
     render() {
         //server.productRead(this.props.item._id, this.changeItem);
         return (
             <>
-                <div class = "List">
+                <div className = "List">
                         <CommentTop username={this.props.username} userImage={'https://i.imgur.com/HTtPYah.jpg'} />
-                        <div className="inputBox">
-                            <TextField
-                            multiline
-                            rows="3"
-                            defaultValue="댓글을 달아주세요~"
-                            className="inputText"
-                            variant="outlined"
-                            value = {this.state.commentText}
-                            onChange={this.changeText}
-                            />
-                        <div>
-                            <button className= "inputButton" onClick={this.addComment}>등록</button>
+                    <div className="inputBox">
+                        <TextField
+                        multiline
+                        rows="3"
+                        defaultValue="댓글을 달아주세요~"
+                        className="inputText"
+                        variant="outlined"
+                        value = {this.state.commentText}
+                        onChange={this.changeText}
+                        />
+                        <div className='commentBottom'>
+                            <Button className= "inputButton" onClick={this.addComment}>등록</Button>
                         </div>
-
-                </div>  
+                        
+                    </div>  
+                    <Divider variant="middle"/>
                 </div>
-                
+               
                 <div>
                     {this.state.item.comments.map((elem, i) => 
-                        <>
-                        <div className = "CommentList">
-                            <CommentTop username={elem.username} userImage={elem.userImage} />
-                            <CommentText commentText={elem.comment} />
+                        <div key={i}>
+                        <div key={i} className = "CommentList">
+                         
+                            <CommentTop username={elem.username} userImage={elem.userImage}  createdAt={elem.createdAt} key={i}/>
+
+                            <CommentText commentText={elem.comment} key={i} />
                         </div>
-                        {elem.username === this.state.item.author.username ? <button className= "inputButton" onChange={this.deleteComment}>삭제</button> : ""}
-                        </>
+                        {elem.username === this.state.item.author.username ? <button key={i} className= "inputButton" onChange={this.deleteComment}>삭제</button> : ""}
+                        </div>
                     )}                   
                 </div>
             </>
@@ -111,7 +114,7 @@ class CommentTop extends Component {
     }
     render() {
         return (
-            <div className="">
+            <div className="all">
                 <ListItem>
                   <ListItemAvatar>                   
                          <Avatar className = "Image" scr={this.props.userImage} 
@@ -119,10 +122,8 @@ class CommentTop extends Component {
                   </ListItemAvatar>
                   <ListItemText
                     primary={this.props.username}
-                    secondary={
-                        "등록시간"
-                    }
-                  />
+                    secondary={""}
+                    />
                 </ListItem>
           </div>
         );

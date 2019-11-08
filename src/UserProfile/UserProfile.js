@@ -1,7 +1,7 @@
 import React from 'react';
 import './UserProfile.css';
 import server from '../dataSend/userProfileLoad';
-import Item from '../Item/Item';
+import ItemSmall from '../ItemSmall/ItemSmall';
 
 export default class UserProfile extends React.Component {
     constructor(props){
@@ -59,11 +59,12 @@ export default class UserProfile extends React.Component {
                         
                 </div>
                 <div className='myItem'>
+                <div className='smallTitle'>내가 등록한 물품</div>
                 {
                 this.state.items.map( ( data ) => (
                     data.author.username === this.props.username
                     ? 
-                    <Item item={data} key={data._id}
+                    <ItemSmall item={data} key={data._id}
                         isLogin={this.props.isLogin} username={this.props.username}
                         openPopup={()=>{}}/> : null
                 ))

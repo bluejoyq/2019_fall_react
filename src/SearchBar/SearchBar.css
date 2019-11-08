@@ -36,6 +36,7 @@
 .searchBox {
     flex: 1;
     height: auto;
+    padding-bottom: 13px;
 }
 .search {
     width: 200px;

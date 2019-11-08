@@ -62,5 +62,12 @@ table.type04 td {
 }
 
 .myItem {
-    background-color: rgb(255, 236, 197);
+    background-color: rgb(241, 241, 241);
+    text-align: center;
+    padding-bottom: 30px;
+}
+.smallTitle{
+    font-size: 20px;
+    padding-top: 10px;
+    font-weight: "bold";
 }

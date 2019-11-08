@@ -85,7 +85,6 @@
     margin-bottom: 5px;
 }
 .itemTitle{
-    margin-top: 5px;
     font-weight: 500;
     font-size: 20px;
 }
@@ -99,6 +98,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    border-left: 2px solid rgb(226, 226, 226);
         
 }
 .itemPic img{
@@ -118,5 +118,6 @@
     color: rgb(226, 32, 106);
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width:35px;
 }

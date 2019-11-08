@@ -170,7 +170,7 @@ server.addComment = (username,comment,productId ,changeItem) => {
 
 server.sendLike = (username,productId,changeItem) => {
     let option = {username: username, productId:productId}
-    fetch("https://evening-peak-07863.herokuapp.com/api/likes/users/", 
+    fetch("https://evening-peak-07863.herokuapp.com/api/likes/user/toggle", 
         { 
             method: 'POST',
             headers: {
