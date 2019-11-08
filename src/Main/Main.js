@@ -6,8 +6,9 @@ import UserProfile from '../UserProfile/UserProfile';
 import Login from '../Login/Login';
 import Signup from '../Signup/Signup';
 import List from '../List/List';
-import {Fab} from '@material-ui/core/';
+import {Fab, Tooltip} from '@material-ui/core/';
 import AddIcon from '@material-ui/icons/Add';
+import AddItem from '../AddItem/AddItem';
 
 export default class Main extends React.Component {
     constructor(props){
@@ -17,14 +18,27 @@ export default class Main extends React.Component {
             showProfile: false,
             showLogin: false,
             showSignup: false,
-            account: null,
+            showAddItem: false,
+            username: null,
+        }  
+        
+    }
+    componentDidMount(){
+        this.getInitialState();
+    }
+    getInitialState = () => {
+        let name = sessionStorage.getItem('username');
+        if(name != null){
+            this.setState({username: name, isLogin: true})
         }
     }
+
     logout = () => {
         this.setState({
             isLogin: false,
-            account:null,
+            username:null,
         });
+        sessionStorage.removeItem('username');
         alert("logout");
     }
     profile = () => {
@@ -49,11 +63,17 @@ export default class Main extends React.Component {
             showSignup: !this.state.showSignup
         });
     }
-    setAccount=(account)=>{
+    toggleAddItem=()=>{
         this.setState({
-            account:account,
+            showAddItem: !this.state.showAddItem
+        });
+    }
+    setAccount=(name)=>{
+        this.setState({
+            username:name,
             isLogin: true,
         });
+        sessionStorage.setItem('username',name);
     }
 
     render() {
@@ -97,14 +117,14 @@ export default class Main extends React.Component {
                 </div>
                 <div className = 'mainContent'>
                     <div className = 'mainList'>
-                        <List/>
+                        <List isLogin={this.state.isLogin} username={this.state.username}/>
                     </div>
                 </div>
                 {this.state.showProfile ? 
                 <Popup
                     text='내 정보'
                     closePopup={this.toggleProfile}
-                    content={<UserProfile username={this.state.account.username} isMine={true}/>}
+                    content={<UserProfile username={this.state.username} isMine={true}/>}
                 />
                 : null
                 }
@@ -124,11 +144,21 @@ export default class Main extends React.Component {
                 />
                 : null
                 }
-                {this.state.isLogin ?
-                    <div className='mainAdd'>
-                    <Fab color="primary" aria-label="add">
-                    <AddIcon />
-                    </Fab>
+                {this.state.showAddItem ?
+                <Popup
+                    text='물품 추가하기'
+                    closePopup={this.toggleAddItem}
+                    content={<AddItem closePopup={this.toggleAddItem}/>}
+                />
+                : null
+                }
+                {this.state.isLogin && !this.state.showAddItem ?
+                    <div className='mainAdd' onClick={this.toggleAddItem}>
+                        <Tooltip title="물품 등록하기" aria-label="물품 등록하기">
+                            <Fab color="primary" aria-label="add">
+                            <AddIcon />
+                            </Fab>
+                        </Tooltip> 
                     </div>
                     : null
                 }

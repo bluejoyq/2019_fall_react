@@ -12,7 +12,7 @@ server.login = ( username, password, setAccount ) => {
         })
     .then( async (jsonData) => {
         let account = await jsonData.json();
-        setAccount(account);
+        setAccount(account.username);
         alert("로그인 성공입니다!");
         return 1;
     })

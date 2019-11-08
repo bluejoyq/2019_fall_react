@@ -27,7 +27,7 @@ export default class UserProfile extends React.Component {
                 <div className='profileBox'>
                     <div className = 'profileImageBox'>
                         <img className = 'profileImage' 
-                        src = {'https://evening-peak-07863.herokuapp.com/'+this.state.account.profileImage}
+                        src = {'https://khuthon.s3.ap-northeast-2.amazonaws.com/'+this.state.account.profileImage}
                         onError={(event)=>{event.target.src = 'https://i.imgur.com/HTtPYah.jpg'} }
                         />
                     </div>

@@ -16,7 +16,7 @@ export default class List extends React.Component {
             items: datas
         });
     }
-    componentDidMount=()=>{
+    componentDidMount(){
         server.productReadAll(this.setItems);
     }
 
@@ -24,11 +24,12 @@ export default class List extends React.Component {
         return(
             <div className='flexContainer'>
                 {
-                    this.state.items.length !== 0 ? 
-                    this.state.items.map( ( data ) => (
-                        data.author !== null && data.isOpen ? <Item item={data} key={data._id} openPopup={()=>{}}/> : null
-                    ))
-                    : null
+                this.state.items.map( ( data ) => (
+                    data.author !== null && data.isOpen ? 
+                    <Item item={data} key={data._id}
+                        isLogin={this.props.isLogin} username={this.props.username}
+                        openPopup={()=>{}}/> : null
+                ))
                 }
             </div>
         )

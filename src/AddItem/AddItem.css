@@ -1,0 +1,31 @@
+.AddContainer {
+    background: rgb(247, 247, 247);
+    margin: 10px;
+    padding: 10px;
+}
+.AddImage{
+    margin: 0 auto;
+    width: 400px;
+}
+
+
+.AddForm {
+    display: flex;
+    justify-content: center;
+}
+
+.AddText {
+    margin: 0 auto;
+    width: 400px;
+}
+
+.AddDate {
+    margin: 0 auto;
+    width: 400px;
+}
+
+.AddSubmit{
+    margin: 0 auto;
+    padding-top : 10px;
+    width: 400px;
+}

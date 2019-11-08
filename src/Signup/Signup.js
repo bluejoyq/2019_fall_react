@@ -148,6 +148,7 @@ class Signup extends React.Component {
                       name="email"
                       autoComplete="email"
                       onChange={this.handleEmailChange}
+                      type='email'
                     />
                   </Grid>
                 </Grid>

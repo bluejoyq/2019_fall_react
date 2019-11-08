@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import PopupUse from './Popup/PopupUse';
-import Search from './Search/Search';
 import Profile from './Profile/Profile';
 import Main from './Main/Main';
 import Login from './Login/Login';

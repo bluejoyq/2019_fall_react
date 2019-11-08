@@ -50,13 +50,13 @@ export default class Item extends React.Component {
                         <span className='userInfo'>
                             <div className='userInfo' onClick={this.toggleProfile}>
                                 <img className='littlePic' 
-                                src={'https://evening-peak-07863.herokuapp.com/'+this.props.item.author.profileImage}
+                                src={'https://khuthon.s3.ap-northeast-2.amazonaws.com/'+this.props.item.author.profileImage}
                                 onError={(event)=>{event.target.src = 'https://i.imgur.com/HTtPYah.jpg'} }
                                 />
                                 <span className='itemUser'>{this.props.item.author.nickname}</span>
                             </div>
                             <div className='itemLocation'>
-                                {this.props.item.location}
+                                {this.props.item.location + ' ' + this.props.item.subLocation}
                             </div>
                             
                         </span>
@@ -71,9 +71,8 @@ export default class Item extends React.Component {
                     </div>
                     <div className='itemPic'>
                         <img className='pic'
-                        src={'https://evening-peak-07863.herokuapp.com/'+this.props.productImage}
-                        onError={(event)=>{event.target.src = 'https://i.imgur.com/HTtPYah.jpg'} }
-                        />
+                        src={'https://khuthon.s3.ap-northeast-2.amazonaws.com/'+this.props.item.productImage}
+                        />  
                     </div>
                 </div>
             </div>

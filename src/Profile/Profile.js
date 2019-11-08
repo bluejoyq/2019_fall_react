@@ -47,7 +47,7 @@ export default class Profile extends React.Component {
                 {this.state.item != null ? <div><div className='profileBox'>
                     <div className = 'profileImageBox'>
                         <img className = 'profileImage' 
-                        src = {'https://evening-peak-07863.herokuapp.com/' + this.state.item.productImage}
+                        src = {'https://khuthon.s3.ap-northeast-2.amazonaws.com/' + this.state.item.productImage}
                         onError={(event)=>{event.target.src = 'https://i.imgur.com/HTtPYah.jpg'}}
                         />
                     </div>
@@ -65,7 +65,7 @@ export default class Profile extends React.Component {
                             </tr>
                             <tr>
                                 <th scope="row">위치</th>
-                                <td>{this.state.item.location}</td>
+                                <td>{this.state.item.location + ' ' + this.state.item.subLocation}</td>
                             </tr>
                             <tr>
                                 <th scope="row">가격</th>

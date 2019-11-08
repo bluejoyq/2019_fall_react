@@ -1,0 +1,60 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+    height: 30px;
+    align-items: center;
+}
+.selectBar {
+    flex: none;
+    display: flex;
+    height: auto;
+    padding: 2px;
+    margin: 5px;
+    align-items: center;
+}
+.searchBar {
+    flex: none;
+    display: flex;
+    height: auto;
+    padding: 2px;
+    margin: 5px;
+    align-items: center;
+}
+
+.selectBox {
+    flex: 1;
+    height: auto;
+}
+.select {
+    width: 70px;
+    height: 25px;
+    margin: 2px;
+    border-radius: 5px;
+}
+
+.searchBox {
+    flex: 1;
+    height: auto;
+}
+.search {
+    width: 200px;
+    height: 25px;
+    margin: 1px;
+    border-radius: 5px;
+    
+}
+.searchButtonBox {
+    flex: 1;
+    display: flex;
+    height: 10px;
+    align-items: center;
+}
+.searchButton {
+    background-color: rgba(225,225,225,0);
+    border : none;
+}
+.searchIcon {
+    size: 10px;  
+}
+
