@@ -10,6 +10,7 @@ import {Fab, Tooltip} from '@material-ui/core/';
 import AddIcon from '@material-ui/icons/Add';
 import AddItem from '../AddItem/AddItem';
 import { withStyles } from "@material-ui/core/styles";
+import SearchBar from '../SearchBar/SearchBar';
 
 const styles = theme => ({
 
@@ -24,6 +25,7 @@ class Main extends React.Component {
             showLogin: false,
             showSignup: false,
             showAddItem: false,
+            showSearch: false,
             username: null,
         }  
         
@@ -73,6 +75,11 @@ class Main extends React.Component {
             showAddItem: !this.state.showAddItem
         });
     }
+    toggleSearch=()=>{
+        this.setState({
+            showSearch: !this.state.showSearch
+        })
+    }
     setAccount=(name)=>{
         this.setState({
             username:name,
@@ -93,7 +100,7 @@ class Main extends React.Component {
                         <div></div>
                     </div>
                     <div className = 'mainSearch'>
-                        <FaSearch className = 'searchIcon' color={'black'} size={24} />
+                        <FaSearch className = 'searchIcon' color={'black'} size={24} onClick={this.toggleSearch}/>
                     </div>
                     <div className = 'mainProfile'>
                         { 
@@ -122,6 +129,9 @@ class Main extends React.Component {
                     
                 </div>
                 <div className = 'mainContent'>
+                    {this.state.showSearch ? 
+                    <div className='mainSearchBar'><SearchBar/></div>
+                    : null}
                     <div className = 'mainList'>
                         <List isLogin={this.state.isLogin} username={this.state.username}/>
                     </div>

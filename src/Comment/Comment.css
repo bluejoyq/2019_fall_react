@@ -1,0 +1,36 @@
+.container {
+   
+}
+.ImageBox {
+
+}
+.avatar {
+
+}
+.TextBox {
+    
+}
+.inputList {
+   
+}
+.commentList {
+
+}
+.inputBox {
+    margin-left: 16px;
+    margin-right: 16px;
+}
+.inputText {
+    width: 500px;
+}
+.inputButton {
+    float: right;
+    background-color: rgba(225,225,225,0);
+    border : none;
+}
+.commentText {
+    margin-left: 16px;
+    margin-right: 16px;   
+    border-bottom: 1px;
+    width: 500px;
+}

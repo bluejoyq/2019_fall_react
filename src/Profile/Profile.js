@@ -4,12 +4,13 @@ import './Profile.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import server from '../dataSend/userProfileLoad';
 import {Button} from '@material-ui/core/';
+import Comment from '../Comment/Comment';
 
 export default class Profile extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            item: {author:{},availableDates:[0]},
+            item: {author:{},availableDates:[0], comments:[]},
             date: null,
             startDate: null,
             endDate: null,
@@ -21,8 +22,11 @@ export default class Profile extends React.Component {
         })
     }
 
-    componentDidMount () {
+    reload = () => {
         server.productRead(this.props._id,this.setItem);
+    }
+    componentDidMount () {
+        this.reload();
     }
     
 
@@ -129,8 +133,9 @@ export default class Profile extends React.Component {
                             </div>
                         </div>
                         
+                        
                     </div></div>: null}
-                
+                    <Comment item={this.state.item} username={this.props.username}/>
                     
             </div>
         )

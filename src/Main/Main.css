@@ -121,3 +121,11 @@
     bottom: 4%;
     right: 2%;
 }
+
+.mainSearchBar{
+    display: flex;
+    justify-content: center;
+    background-color: whitesmoke;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
