@@ -185,4 +185,4 @@ server.sendLike = (username,productId,changeItem) => {
             return 1;
         })
 }
-module.exports = server;
+export default server;
