@@ -1,10 +1,17 @@
+@font-face { 
+    font-family: "NanumBarunGothic";
+    src: url("/NanumBarunGothic.ttf") format("truetype");
+    
+}
+
+
 .mainTop {
     display: flex;
     position: fixed;
     width: 100%;
     height: 60px;
     margin-bottom: 10px;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
 }
 
 .mainLogo {
@@ -112,12 +119,12 @@
     cursor:pointer;
 }
 .mainNavTextHigh{
-    color: #ff0000;
+    color: #d33333;
     font-size: 20px;
     flex: 1;
     text-align: center;
     font-weight: bold;
-    border-bottom: 3px solid #ff0000;
+    border-bottom: 3px solid #d33333;
     cursor:pointer;
 }
 .mainList{

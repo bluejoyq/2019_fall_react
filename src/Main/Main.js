@@ -12,6 +12,7 @@ import AddIcon from '@material-ui/icons/Add';
 import AddItem from '../AddItem/AddItem';
 import { withStyles } from "@material-ui/core/styles";
 import SearchBar from '../SearchBar/SearchBar';
+import ListGood from '../List/ListGood';
 
 const styles = theme => ({
 
@@ -28,11 +29,11 @@ class Main extends React.Component {
             showSignup: false,
             showAddItem: false,
             showSearch: false,
+            showGood: false,
             username: null,
             search:{do:'',gu:'',keyword:'',temp:''},
             textHighlight:["mainNavTextHigh","mainNavText","mainNavText"],
             contentMargin:"mainContent",
-            func:[()=>{},this.toggleSearch],
         }  
         
     }
@@ -83,26 +84,21 @@ class Main extends React.Component {
         });
     }
     toggleSearch=()=>{
-        this.setState({
-            showSearch: !this.state.showSearch,
-            search:{do:'',gu:'',keyword:''}
-        })
         if(this.state.showSearch) {
             this.setState({
                 showSearch: !this.state.showSearch,
+                showGood:false,
                 search:{do:'',gu:'',keyword:''},
                 textHighlight:["mainNavTextHigh","mainNavText","mainNavText"], 
-                contentMargin:"mainContent",func:[()=>{},this.toggleSearch]
+                contentMargin:"mainContent",
             })
-            //최신->검색
-            //margin 50px
         }
         else{
             this.setState({
                 showSearch: !this.state.showSearch,
                 search:{do:'',gu:'',keyword:''},
                 textHighlight:["mainNavText","mainNavTextHigh","mainNavText"], 
-                contentMargin:"mainContentSmall",func:[this.toggleSearch,()=>{}]
+                contentMargin:"mainContentSmall",
             })
         }
 
@@ -116,6 +112,62 @@ class Main extends React.Component {
     }
     changeSearch=(search)=>{
         this.setState({search:search});
+    }
+    changeGood=(event)=>{
+        if(this.state.showGood === true && event.target.id==='b1'){
+            this.setState({
+                showSearch: false,
+                showGood: false,
+                search:{do:'',gu:'',keyword:''},
+                textHighlight:["mainNavTextHigh","mainNavText","mainNavText"], 
+                contentMargin:"mainContent",
+            })
+        }
+        else if(this.state.showGood === false && event.target.id==='b3'){
+            this.setState({
+                showSearch: false,
+                showGood: true,
+                search:{do:'',gu:'',keyword:''},
+                textHighlight:["mainNavText","mainNavText","mainNavTextHigh"], 
+                contentMargin:"mainContent",
+            })
+        }
+        else if(this.state.showSearch===true && event.target.id==='b3'){
+            this.setState({
+                showSearch: false,
+                showGood: false,
+                search:{do:'',gu:'',keyword:''},
+                textHighlight:["mainNavText","mainNavText","mainNavTextHigh"], 
+                contentMargin:"mainContent",
+            })
+        }
+        else if(this.state.showSearch===true && event.target.id==='b1'){
+            this.setState({
+                showSearch: false,
+                showGood: false,
+                search:{do:'',gu:'',keyword:''},
+                textHighlight:["mainNavTextHigh","mainNavText" ,"mainNavText"],
+                contentMargin:"mainContent",
+            })
+        }
+        else if(this.state.showGood===true && event.target.id==='b2'){
+            this.setState({
+                showSearch: true,
+                showGood: false,
+                search:{do:'',gu:'',keyword:''},
+                textHighlight:["mainNavText","mainNavTextHigh","mainNavText"], 
+                contentMargin:"mainContentSmall",
+            })
+        }
+        else if(this.state.showGood===false && event.target.id==='b2'){
+            this.setState({
+                showSearch: true,
+                showGood: false,
+                search:{do:'',gu:'',keyword:''},
+                textHighlight:["mainNavText","mainNavTextHigh","mainNavText"], 
+                contentMargin:"mainContentSmall",
+            })
+        }
     }
 
     render() {
@@ -151,13 +203,13 @@ class Main extends React.Component {
                 <div className='mainNav'>
                     <div className='mainNavOption'>
                         <div>
-                            <div className={this.state.textHighlight[0]} onClick={this.state.func[0]}>최신</div>
+                            <div className={this.state.textHighlight[0]} id={'b1'} onClick={this.changeGood}>최신</div>
                         </div>
                         <div>
-                            <div className={this.state.textHighlight[1]} onClick={this.state.func[1]}>검색</div>
+                            <div className={this.state.textHighlight[1]} id={'b2'} onClick={this.changeGood}>검색</div>
                         </div>
                         <div>
-                            <div className={this.state.textHighlight[2]}>인기</div>
+                            <div className={this.state.textHighlight[2]} id={'b3'} onClick={this.changeGood}>보관</div>
                         </div>     
                     </div>                    
                 </div>
@@ -166,12 +218,29 @@ class Main extends React.Component {
                         <div className='mainSearchBar'><SearchBar changeSearch={this.changeSearch}/></div>
                         : null}
                     </div>
+                    {this.state.isLogin && !this.state.showAddItem ?
+                    <div className='mainAdd' onClick={this.toggleAddItem}>
+                        <Tooltip title="물품 등록하기" aria-label="물품 등록하기" >
+                            <Fab color="primary" aria-label="add">
+                            <AddIcon />
+                            </Fab>
+                        </Tooltip> 
+                    </div>
+                    : null
+                }
                 <div className = {this.state.contentMargin}>
                    
+                    {
+                    this.state.showGood ? 
+                    <div className = 'mainList'>
+                        <ListGood isLogin={this.state.isLogin} username={this.state.username} search={this.state.search}/>
+                    </div>:
                     <div className = 'mainList'>
                         <List isLogin={this.state.isLogin} username={this.state.username} search={this.state.search}/>
                     </div>
+                    }
                 </div>
+                
                 {this.state.showProfile ? 
                 <Popup
                     text='내 정보'
@@ -204,16 +273,9 @@ class Main extends React.Component {
                 />
                 : null
                 }
-                {this.state.isLogin && !this.state.showAddItem ?
-                    <div className='mainAdd' onClick={this.toggleAddItem}>
-                        <Tooltip title="물품 등록하기" aria-label="물품 등록하기" >
-                            <Fab color="primary" aria-label="add">
-                            <AddIcon />
-                            </Fab>
-                        </Tooltip> 
-                    </div>
-                    : null
-                }
+                
+                
+
             </div>
         )
     }

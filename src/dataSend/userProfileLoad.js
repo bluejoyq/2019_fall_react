@@ -75,6 +75,7 @@ server.productRead = ( productId,setData ) => {
     })
 }
 
+
 //username 없어도 됨.
 server.rent = ( productId, username, startDate, endDate ) => {   
     let form = new FormData();

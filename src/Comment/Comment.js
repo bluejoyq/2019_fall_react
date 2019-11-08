@@ -15,11 +15,22 @@ export default class Comment extends Component {
     }
 
     componentDidMount(){
-        server.productRead(this.props._id,this.changeItem);
+        //server.productRead(this.props._id,this.changeItem);
+        fetch("https://evening-peak-07863.herokuapp.com/api/products/"+this.props._id, 
+        { 
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        })
+        .then( (jsonData) => {
+            let datas = jsonData.json();
+            this.changeItem(datas);
+            return 1;
+        })
     }
-    componentDidUpdate(){
-        server.productRead(this.props._id,this.changeItem);
-    }
+    
     changeText = (elem) => {
         let text = elem.target.value;
         if(text.length < 200){

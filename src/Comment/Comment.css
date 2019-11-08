@@ -8,7 +8,7 @@
    
 }
 .commentList {
-
+    padding: 20px;
 }
 .List{
     flex-basis: 420px;
@@ -30,8 +30,7 @@
     border : none;
 }
 .commentText {
-    margin-left: 10px;
-    margin-right: 10px;   
+    
     border-bottom: 1px;
     width: 100%;
 }
