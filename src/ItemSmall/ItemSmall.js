@@ -82,7 +82,7 @@ class ItemSmall extends React.Component {
                                 <FavoriteIcon />{this.props.item.numOfLikes}
                                 </div>
                                 <div className='itemPrice'>
-                                    \{this.props.item.price}
+                                    {this.props.item.price}원
                                 </div>
                             </div>
                             
