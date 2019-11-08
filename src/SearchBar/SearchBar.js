@@ -1,6 +1,8 @@
 import React from 'react';
-import "./Search.css"
+import "./SearchBar.css"
 import SearchIcon from '@material-ui/icons/Search';
+import TextField from '@material-ui/core/TextField';
+import Select from '@material-ui/core/Select';
 
 const place = [
   ["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"],
@@ -22,7 +24,22 @@ const place = [
 ]
 const placeDo = ["서울특별시","인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도"];
 
-export default class Search extends React.Component {
+const styles = (theme) => ({
+  formControl: {
+      margin: theme.spacing(1),
+      minWidth: 90,
+      maxWidth: 300,
+  },
+  price: {
+      margin: theme.spacing(1),
+      minWidth: 90,
+  },
+  textField: {
+      width: 400,
+  },
+})
+
+class SearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -37,7 +54,7 @@ export default class Search extends React.Component {
   //  this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChangeDo = (elem) => {
+handleChangeDo = (elem) => {
     let select = elem.target.value;
     let index = placeDo.findIndex((item) => {
         return item === select;
@@ -60,11 +77,13 @@ handleChangeGu = (elem) => {
   }
 
   render() {
+    const { classes } = this.props;
     return(
       <div className = "container">
         <div className = "selectBar">
           <div className = "selectBox">
-            <select
+            <Select
+            native
             className="select"
             name="do"
             defaultValue={placeDo[0]}
@@ -74,11 +93,12 @@ handleChangeGu = (elem) => {
               {placeDo.map((elem, i) => 
                 <option value = {elem}>{elem}</option>
               )}
-            </select>
+            </Select>
 
           </div>
           <div className = "selectBox">
-           <select
+           <Select
+            native
             className="select"
             defaultValue=""
             name="do"
@@ -88,12 +108,13 @@ handleChangeGu = (elem) => {
               {place[this.state.selectIndx].map((elem, i) => 
                 <option value = {elem}>{elem}</option>
               )}
-            </select>
+            </Select>
           </div>
         </div>
         <div className = "searchBar">
           <div className = "searchBox">
-            <input 
+            <TextField 
+            type="search"
             className = "search"
             onChange = {this.handleChangeInput}
             />
@@ -107,3 +128,5 @@ handleChangeGu = (elem) => {
     );
   }
 }
+
+export default withStyles(styles, { withTheme: true })(SearchBar);

@@ -120,16 +120,12 @@ server.addProduct = ( title, content, location, subLocation, startDate, endDate,
     form.append('title',title);form.append('content',content);form.append('location',location);
     form.append('subLocation',subLocation);form.append('availableDates',[startDate,endDate]);form.append('productImage',picture);
 
-    /* let option = {title:title,content:content,location:location,
-        subLocation:subLocation,availableDates:[startDate,endDate], productImage:picture} */
     fetch("https://evening-peak-07863.herokuapp.com/api/products/", 
         { 
             method: 'POST',
-            // mode:"cors",
             headers: {
                 'Accept': 'application/json',
-                // 'Content-Type': 'multipart/form-data',
-                // 'Content-Type': 'application/json',
+
             },
             body: form,
         })
@@ -143,6 +139,22 @@ server.addProduct = ( title, content, location, subLocation, startDate, endDate,
         alert("예약 실패!");
         return null;
     });
+}
+
+server.addComment = (username,comment,productId ,changeItem) => {
+    let option = {username: username,comment:comment, productId:productId}
+    fetch("https://evening-peak-07863.herokuapp.com/api/comments/", 
+        { 
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(option),
+        })
+        .then( async(jsonData) => {
+            server.productRead(productId,changeItem);
+        })
 }
 
 module.exports = server;
