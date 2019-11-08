@@ -1,8 +1,9 @@
 import React from 'react';
 import "./SearchBar.css"
 import SearchIcon from '@material-ui/icons/Search';
-import TextField from '@material-ui/core/TextField';
-import Select from '@material-ui/core/Select';
+
+import {Select,FormControl,TextField} from '@material-ui/core/';
+import { withStyles } from "@material-ui/core/styles";
 
 const place = [
   ["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"],
@@ -27,8 +28,7 @@ const placeDo = ["서울특별시","인천광역시","대전광역시","광주�
 const styles = (theme) => ({
   formControl: {
       margin: theme.spacing(1),
-      minWidth: 90,
-      maxWidth: 300,
+      minWidth: 200,
   },
   price: {
       margin: theme.spacing(1),
@@ -82,6 +82,7 @@ handleChangeGu = (elem) => {
       <div className = "container">
         <div className = "selectBar">
           <div className = "selectBox">
+          <FormControl className={classes.formControl}>
             <Select
             native
             className="select"
@@ -94,9 +95,10 @@ handleChangeGu = (elem) => {
                 <option value = {elem}>{elem}</option>
               )}
             </Select>
-
+          </FormControl>
           </div>
           <div className = "selectBox">
+          <FormControl className={classes.formControl}>
            <Select
             native
             className="select"
@@ -109,6 +111,7 @@ handleChangeGu = (elem) => {
                 <option value = {elem}>{elem}</option>
               )}
             </Select>
+            </FormControl>
           </div>
         </div>
         <div className = "searchBar">
