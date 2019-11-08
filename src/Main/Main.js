@@ -9,8 +9,13 @@ import List from '../List/List';
 import {Fab, Tooltip} from '@material-ui/core/';
 import AddIcon from '@material-ui/icons/Add';
 import AddItem from '../AddItem/AddItem';
+import { withStyles } from "@material-ui/core/styles";
 
-export default class Main extends React.Component {
+const styles = theme => ({
+
+});
+
+class Main extends React.Component {
     constructor(props){
         super(props)
         this.state = {
@@ -77,6 +82,7 @@ export default class Main extends React.Component {
     }
 
     render() {
+        const { classes } = this.props;
         return (        
             <div>
                 <div className = 'mainTop'>
@@ -154,7 +160,7 @@ export default class Main extends React.Component {
                 }
                 {this.state.isLogin && !this.state.showAddItem ?
                     <div className='mainAdd' onClick={this.toggleAddItem}>
-                        <Tooltip title="물품 등록하기" aria-label="물품 등록하기">
+                        <Tooltip title="물품 등록하기" aria-label="물품 등록하기" >
                             <Fab color="primary" aria-label="add">
                             <AddIcon />
                             </Fab>
@@ -166,3 +172,6 @@ export default class Main extends React.Component {
         )
     }
 }
+
+
+export default withStyles(styles, { withTheme: true })(Main);

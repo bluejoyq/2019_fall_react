@@ -82,3 +82,20 @@ table.type04 td {
 .borrowButton {
     margin: 5px;
 }
+
+.pick{
+    display:flex;
+    justify-content: space-around;
+}
+
+.start{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.end{
+    margin-top: 10px;
+    font-size: 20px;
+    text-align: center;
+}

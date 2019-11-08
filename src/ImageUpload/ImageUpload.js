@@ -15,6 +15,10 @@ export default class ImageUpload extends React.Component {
                 onChange={this.props.onDrop}
                 imgExtension={['.jpg', '.gif', '.png', '.gif']}
                 maxFileSize={5242880}
+                singleImage={true}
+                withPreview={true}
+                withIcon={false}
+                label={'최대 파일 크기 5Mb, 파일 형식 jpg | gif | png'}
             />
         );
     }

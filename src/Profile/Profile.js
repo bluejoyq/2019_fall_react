@@ -1,16 +1,18 @@
 import React from 'react';
 import DatePicker from "react-datepicker";
-import './Profile.css'
+import './Profile.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import server from '../dataSend/userProfileLoad';
-import {Button} from '@material-ui/core/'
+import {Button} from '@material-ui/core/';
 
 export default class Profile extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            item: {author:{},availableDates:[]},
+            item: {author:{},availableDates:[0]},
             date: null,
+            startDate: null,
+            endDate: null,
         }
     }
     setItem = (item) => {
@@ -24,19 +26,26 @@ export default class Profile extends React.Component {
     }
     
 
-    handleChange = (date) => {
-        this.setState({
-            date: date
-        });
-    };
+    setStartDate= (date) => {
+        this.setState({startDate:date})
+    }
+    setEndDate= (date) => {
+        this.setState({endDate:date})
+    }
 
     borrowSubmit = () => {
-        if(this.state.date === null){
+        if(this.state.startDate === null && this.state.endDate===null){
             alert("날짜가 비었습니다!");
             return 0;
         }
+        else if (this.props.isLogin ==false){
+            alert("로그인 해주세요");
+            return 0;
+        }
         else{
-            alert("예약 성공!");
+            server.rent(this.state.item._id,this.props.username,
+                this.state.startDate.toISOString().substr(0,10),
+                this.state.endDate.toISOString().substr(0,10));
             this.props.togglePopup();
         }
     }
@@ -81,18 +90,42 @@ export default class Profile extends React.Component {
                             <div className="chcekDayText">
                                 대여 가능 날짜 확인
                             </div>
-                            <DatePicker id='borrowDate' 
-                            dateFormat="yyyy/MM/dd"
-                            selected={this.state.date} 
-                            onChange={this.handleChange} 
-                            includeDates={this.state.item.availableDates.map(date => new Date(date))}
-                            minDate={new Date()}
-                            placeholderText="날짜를 골라주세요"
-                            withPortal
-                            disabledKeyboardNavigation
+                            <div className= 'pick'>
+                            <div className='start'>
+                            <div className='end'>대여 시작 일자</div>
+                            <DatePicker
+                                selected={this.state.startDate}
+                                onChange={date => this.setStartDate(date)}
+                                selectsStart
+                                includeDates={this.state.item.availableDates.map(date => new Date(date))}
+                                startDate={this.state.startDate}
+                                endDate={this.state.endDate}
+                                minDate={new Date()}
+                                dateFormat="yyyy/MM/dd"
+                                placeholderText="시작 날짜"
+                                disabledKeyboardNavigation
                             />
+                            </div>
+                            <div className='start'>
+                            <div className='end'>대여 종료 일자</div>
+                            <DatePicker
+                                selected={this.state.endDate}
+                                onChange={date => this.setEndDate(date)}
+                                selectsEnd
+                                includeDates={this.state.item.availableDates.map(date => new Date(date))}
+                                endDate={this.state.endDate}
+                                startDate={this.state.startDate}
+                                minDate={this.state.startDate}
+                                dateFormat="yyyy/MM/dd"
+                                placeholderText="끝 날짜"
+                                disabledKeyboardNavigation
+                            />
+                            </div>
+                            </div>
                             <div className = 'borrowButton'>
-                                <Button onClick={this.borrowSubmit} variant="contained" color="primary" >대여하기</Button>
+                                <Button onClick={this.borrowSubmit} variant="contained"
+                                 color="primary" fullWidth={true}>대여하기
+                                 </Button>
                             </div>
                         </div>
                         

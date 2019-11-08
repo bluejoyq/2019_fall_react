@@ -40,7 +40,8 @@ export default class Item extends React.Component {
                     <Popup
                         text='물품 정보'
                         closePopup={this.toggleItem}
-                        content={<Profile _id = {this.props.item._id} togglePopup = {this.toggleItem}/>}
+                        content={<Profile _id = {this.props.item._id} togglePopup = {this.toggleItem} 
+                        isLogin={this.props.isLogin} username={this.props.username}/>}
                     />
                     
                 : null

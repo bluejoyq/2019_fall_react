@@ -39,7 +39,7 @@ html,body {
     background: white;
     display: flex;
     flex-direction: column;
-    border-radius: 10px;
+    border-radius: 10px 10px 0px 0px;
     padding-right: 5px;
     margin-left: 10px;
 }
@@ -52,6 +52,7 @@ html,body {
     align-items: center;
     flex: 0.08;
     border-radius: 10px;
+    border-bottom: 1px solid #ccc;
 }
 
 .popupName {

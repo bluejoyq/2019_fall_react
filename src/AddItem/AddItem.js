@@ -49,6 +49,9 @@ class AddItem extends React.Component {
             do : "",
             gu : "",
             pictures: [],
+            title: "",
+            content: "",
+            price: 0,
             startDate: new Date(),
             endDate: new Date(),
             
@@ -74,6 +77,8 @@ class AddItem extends React.Component {
 
     handleSubmit = (event) => {
         this.props.closePopup();
+        console.log(this.state.do,this.state.gu,this.state.title,this.state.content,this.state.price, this.state.pictures,
+            this.state.startDate.toISOString().substring(0, 10),this.state.endDate.toISOString().substring(0, 10))
         event.preventDefault();
     }
     setStartDate= (date) => {
@@ -82,7 +87,15 @@ class AddItem extends React.Component {
     setEndDate= (date) => {
         this.setState({endDate:date})
     }
-
+    changeTitle=(event)=>{
+        this.setState({title:event.target.value})
+    }
+    changeContent=(event)=>{
+        this.setState({content:event.target.value})
+    }
+    changePrice=(event)=>{
+        this.setState({price:event.target.value})
+    }
     render(){
         const { classes } = this.props;
         return (
@@ -98,6 +111,8 @@ class AddItem extends React.Component {
                     label="제목"
                     margin="normal"
                     autoFocus
+                    onChange={this.changeTitle}
+                    required
                     />
                 </div>
                 <div className='AddText'>
@@ -107,6 +122,8 @@ class AddItem extends React.Component {
                     label="설명"
                     margin="normal"
                     multiline={true}
+                    onChange={this.changeContent}
+                    required
                     />
                 </div>
                 <div className='AddForm'>
@@ -117,6 +134,7 @@ class AddItem extends React.Component {
                     id="demo-simple-select-helper"
                     value={this.state.do}            
                     onChange={this.handleChangeDo}
+                    required
                     >
                         {placeDo.map((elem, i) => 
                             <MenuItem value = {elem}>{elem}</MenuItem>
@@ -130,6 +148,7 @@ class AddItem extends React.Component {
                     id="demo-simple-select-helper"
                     value={this.state.go}  
                     onChange={this.handleChangeGu}
+                    required
                     >
                         {place[this.state.selectIndx].map((elem, i) => 
                             <MenuItem value = {elem}>{elem}</MenuItem>
@@ -142,6 +161,8 @@ class AddItem extends React.Component {
                         label="가격"
                         margin="normal"
                         type='number'
+                        onChange={this.changePrice}
+                        required
                     />
                 </div>
                 <div className='AddDate'>
