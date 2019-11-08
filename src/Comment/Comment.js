@@ -13,7 +13,8 @@ export default class Comment extends Component {
         super(props);
         this.state = {
             commentText : "",
-            item: {author:{},comments:[]}
+            item: {author:{},comments:[]},
+            count: 0,
         };
         
     }
@@ -29,7 +30,7 @@ export default class Comment extends Component {
     }
 
     addComment = () => {
-        server.addComment(this.state.username,this.state.commentText, this.props.item._id, this.changeItem);
+        server.addComment(this.props.username,this.state.commentText, this.props.item._id, this.changeItem);
         this.setState({commentText:''})
     }
     changeComment=(comment)=>{
@@ -38,11 +39,10 @@ export default class Comment extends Component {
     deleteComment = () => {
 
     }
-    componentDidMount(){
-        server.addComment(this.state.username,this.state.commentText, this.props.item._id, this.changeItem);
-    }
+    
 
     render() {
+        //server.productRead(this.props.item._id, this.changeItem);
         return (
             <>
                 <div>

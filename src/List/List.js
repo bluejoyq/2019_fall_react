@@ -25,7 +25,11 @@ export default class List extends React.Component {
             <div className='flexContainer'>
                 {
                 this.state.items.map( ( data ) => (
-                    data.author !== null && data.isOpen ? 
+                    data.author !== null && data.isOpen 
+                    && data.location.indexOf(this.props.search.do) != -1
+                    && data.subLocation.indexOf(this.props.search.gu) != -1
+                    && data.title.indexOf(this.props.search.keyword) != -1
+                    ? 
                     <Item item={data} key={data._id}
                         isLogin={this.props.isLogin} username={this.props.username}
                         openPopup={()=>{}}/> : null

@@ -66,7 +66,7 @@ export default class Item extends React.Component {
                                 {this.props.item.title}
                             </div>
                             <div className='itemPrice'>
-                                {this.props.item.price}원(일당)
+                                \{this.props.item.price}
                             </div>
                         </div>
                     </div>
@@ -74,6 +74,7 @@ export default class Item extends React.Component {
                     <div className='itemPic'style={Math.max(document.documentElement.clientWidth, window.innerWidth || 0)<800 ? {width:"30vw"}:{}}>
                         <img className='pic'
                         src={'https://khuthon.s3.ap-northeast-2.amazonaws.com/'+this.props.item.productImage}
+                        onError={(event)=>{event.target.src = 'https://i.imgur.com/HTtPYah.jpg'}}
                         />  
                     </div>
                 </div>               

@@ -115,8 +115,9 @@ server.productReadAll = ( setData ) => {
     })
 }
 
-server.addProduct = ( title, content, location, subLocation, startDate, endDate, picture ) => {   
+server.addProduct = ( price,username,title, content, location, subLocation, startDate, endDate, picture ) => {  
     let form = new FormData();
+    form.append('username',username); form.append('price',price);
     form.append('title',title);form.append('content',content);form.append('location',location);
     form.append('subLocation',subLocation);form.append('availableDates',[startDate,endDate]);form.append('productImage',picture);
 

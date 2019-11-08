@@ -27,6 +27,10 @@ class Main extends React.Component {
             showAddItem: false,
             showSearch: false,
             username: null,
+            search:{do:'',gu:'',keyword:''},
+            textHighlight:["mainNavTextHigh","mainNavText","mainNavText"],
+            contentMargin:"mainContent",
+            func:[()=>{},this.toggleSearch]
         }  
         
     }
@@ -77,8 +81,28 @@ class Main extends React.Component {
     }
     toggleSearch=()=>{
         this.setState({
-            showSearch: !this.state.showSearch
+            showSearch: !this.state.showSearch,
+            search:{do:'',gu:'',keyword:''}
         })
+        if(this.state.showSearch) {
+            this.setState({
+                showSearch: !this.state.showSearch,
+                search:{do:'',gu:'',keyword:''},
+                textHighlight:["mainNavTextHigh","mainNavText","mainNavText"], 
+                contentMargin:"mainContent",func:[()=>{},this.toggleSearch]
+            })
+            //최신->검색
+            //margin 50px
+        }
+        else{
+            this.setState({
+                showSearch: !this.state.showSearch,
+                search:{do:'',gu:'',keyword:''},
+                textHighlight:["mainNavText","mainNavTextHigh","mainNavText"], 
+                contentMargin:"mainContentSmall",func:[this.toggleSearch,()=>{}]
+            })
+        }
+
     }
     setAccount=(name)=>{
         this.setState({
@@ -86,6 +110,9 @@ class Main extends React.Component {
             isLogin: true,
         });
         sessionStorage.setItem('username',name);
+    }
+    changeSearch=(search)=>{
+        this.setState({search:search});
     }
 
     render() {
@@ -120,20 +147,25 @@ class Main extends React.Component {
                 <div className='mainNav'>
                     <div className='mainNavOption'>
                         <div>
-                            <div className='mainNavTextHigh'>최신</div>
+                            <div className={this.state.textHighlight[0]} onClick={this.state.func[0]}>최신</div>
                         </div>
                         <div>
-                            <div className='mainNavText'>인기</div>
+                            <div className={this.state.textHighlight[1]} onClick={this.state.func[1]}>검색</div>
+                        </div>
+                        <div>
+                            <div className={this.state.textHighlight[2]}>인기</div>
                         </div>     
-                    </div>
-                    
+                    </div>                    
                 </div>
-                <div className = 'mainContent'>
-                    {this.state.showSearch ? 
-                    <div className='mainSearchBar'><SearchBar/></div>
-                    : null}
+                    <div className="mainSearchBarContainer">
+                        {this.state.showSearch ? 
+                        <div className='mainSearchBar'><SearchBar changeSearch={this.changeSearch}/></div>
+                        : null}
+                    </div>
+                <div className = {this.state.contentMargin}>
+                   
                     <div className = 'mainList'>
-                        <List isLogin={this.state.isLogin} username={this.state.username}/>
+                        <List isLogin={this.state.isLogin} username={this.state.username} search={this.state.search}/>
                     </div>
                 </div>
                 {this.state.showProfile ? 
@@ -164,7 +196,7 @@ class Main extends React.Component {
                 <Popup
                     text='물품 추가하기'
                     closePopup={this.toggleAddItem}
-                    content={<AddItem closePopup={this.toggleAddItem}/>}
+                    content={<AddItem closePopup={this.toggleAddItem} username={this.username}/>}
                 />
                 : null
                 }
